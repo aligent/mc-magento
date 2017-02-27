@@ -8,7 +8,6 @@ app/etc/modules/Ebizmarts_MailChimp.xml                              app/etc/mod
 js/ebizmarts/mailchimp                                               js/ebizmarts/mailchimp
 lib/Ebizmarts/Mailchimp.php                                          lib/Ebizmarts/Mailchimp.php
 lib/Ebizmarts/Mailchimp                                              lib/Ebizmarts/Mailchimp
-lib/Mandrill                                                         lib/Mandrill
 skin/adminhtml/default/default/ebizmarts/mailchimp                   skin/adminhtml/default/default/ebizmarts/mailchimp
 skin/adminhtml/default/default/ebizmarts/mandrill                    skin/adminhtml/default/default/ebizmarts/mandrill
 m4mlogs.sh                                                           m4mlogs.sh
