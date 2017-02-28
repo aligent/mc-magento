@@ -1,8 +1,20 @@
 <?php
-
+/** @var Mage_Eav_Model_Entity_Setup $installer */
 $installer = $this;
 
 $installer->startSetup();
+/**
+ * This is a install script (not an update script)
+ * If it execute it means magento did not find its entries
+ * if entry exists, it means due to case-mismatch and needs to be deleted
+ * Otherwise magento will throw execution when inserting resource version number
+ * It will inserted because it is install not upgrade setup
+ * and by default mysql is case insensitive
+ */
+
+$installer->getConnection()->delete('core_resource','code = "Mailchimp_setup"');
+
+
 
 $installer->getConnection()->addColumn(
     $installer->getTable('newsletter_subscriber'), 'subscriber_firstname', 'varchar(50)'
@@ -15,22 +27,22 @@ $eav = new Mage_Eav_Model_Entity_Setup('core_setup');
 
 $eav->addAttribute(
     'customer', 'mailchimp_sync_delta', array(
-    'label'     => 'MailChimp last sync timestamp',
-    'type'      => 'datetime',
-    'input'     => 'text',
-    'visible'   => true,
-    'required'  => false,
-    'position'  => 1,
+        'label'     => 'MailChimp last sync timestamp',
+        'type'      => 'datetime',
+        'input'     => 'text',
+        'visible'   => true,
+        'required'  => false,
+        'position'  => 1,
     )
 );
 $eav->addAttribute(
     'customer', 'mailchimp_sync_error', array(
-    'label'     => 'MailChimp Error Description',
-    'type'      => 'varchar',
-    'input'     => 'text',
-    'visible'   => true,
-    'required'  => false,
-    'position'  => 1,
+        'label'     => 'MailChimp Error Description',
+        'type'      => 'varchar',
+        'input'     => 'text',
+        'visible'   => true,
+        'required'  => false,
+        'position'  => 1,
     )
 );
 
@@ -63,23 +75,23 @@ $attribute->save();
 
 $eav->addAttribute(
     'catalog_product', 'mailchimp_sync_delta', array(
-    'label'     => 'MailChimp last sync timestamp',
-    'type'      => 'datetime',
-    'input'     => 'text',
-    'visible'   => true,
-    'required'  => false,
-    'position'  => 1,
+        'label'     => 'MailChimp last sync timestamp',
+        'type'      => 'datetime',
+        'input'     => 'text',
+        'visible'   => true,
+        'required'  => false,
+        'position'  => 1,
     )
 );
 
 $eav->addAttribute(
     'catalog_product', 'mailchimp_sync_error', array(
-    'label'     => 'MailChimp Error Description',
-    'type'      => 'varchar',
-    'input'     => 'text',
-    'visible'   => true,
-    'required'  => false,
-    'position'  => 1,
+        'label'     => 'MailChimp Error Description',
+        'type'      => 'varchar',
+        'input'     => 'text',
+        'visible'   => true,
+        'required'  => false,
+        'position'  => 1,
     )
 );
 
@@ -120,4 +132,3 @@ catch (Exception $e){
 }
 
 $installer->endSetup();
-
